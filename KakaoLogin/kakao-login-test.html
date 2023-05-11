@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <p id="loginBtn">  <a id="kakao-login-btn" href="javascript:loginWithKakao()"><img src="./images/login.png" alt="로그인버튼"/></a></p>
+   <p id="token-result"></p>
+   <!-- 자바스크립트코드 -->
+   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+   <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js" 
+   integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" 
+   crossorigin="anonymous"></script>
+  <script>
+    //  e08f2601fda4a87e50182a98080a8999 javascript key
+    // 0277dd6b9dba489b33e4dbd504405831 REST APT key
+    window.Kakao.init('e08f2601fda4a87e50182a98080a8999');
+    // Kakao.isInitialized();
+    console.log(Kakao.isInitialized());
+    
+
+  </script>
+  <script>
+  function loginWithKakao() {
+    Kakao.Auth.authorize({
+      redirectUri: 'http://127.0.0.1:5500/kakao-login-test.html',
+      prompts:'login'
+    });
+  }
+
+let code = new URL(window.location.href).searchParams.get('code');
+console.log(code);
+
+// axios.post('/your-backend-api-url', {
+//   code: AUTHORIZATION_CODE_FROM_ADDRESS_BAR
+// })
+// .then(function (response) {
+//   console.log('Authorization code sent successfully');
+// })
+// .catch(function (error) {
+//   console.error('Failed to send authorization code:', error);
+// });
+
+</script>
+</body>
+</html>
